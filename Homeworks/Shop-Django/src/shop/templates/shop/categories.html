@@ -1,0 +1,52 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+<br>
+
+<div class="row">
+    <div class="col-md">
+        <div class ="card card-body">
+            <h5>Categories</h5>
+        </div>
+        <div class="row">
+
+            <div class="col-md-4">
+                <div class="card card-body">
+                    <table  class="table table-sm" >
+
+                        <tr>
+                            <th  >Store Categories</th>
+                        </tr>
+
+                        {% for item in store_cat %}
+                            <tr>
+                                <td  >{{item}}</td>
+                            </tr>
+                        {% endfor %}
+
+                    </table>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card card-body">
+                    <table  class="table table-sm"  >
+                        <tr>
+                            <th>Item Categories</th>
+                        </tr>
+
+                        {% for item in item_cat %}
+                            <tr>
+                                <td>{{item}}</td>
+                            </tr>
+                        {% endfor %}
+
+                    </table>
+                </div>
+            </div>
+
+    </div>
+    </div>
+</div>
+{% endblock %}
