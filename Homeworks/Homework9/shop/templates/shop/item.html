@@ -1,0 +1,43 @@
+{% load static %}
+
+<style>
+    .product {
+  text-align: center;
+}
+
+.product-title {
+  font-size: 1.2em;
+  margin-top: 10px;
+}
+
+.product-price {
+  font-size: 1.2em;
+  color: green;
+  margin-top: 10px;
+}
+
+.product-description {
+  font-size: 0.9em;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.add-to-cart-button {
+  padding: 10px 20px;
+  background-color: green;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 1em;
+  cursor: pointer;
+}
+
+</style>
+<div class="product">
+    <img src="{{item.picture.url}}"  alt="My image">
+    <h3 class="product-title">{{item.name}}</h3>
+    <p class="product-price">{{item.price}}$</p>
+    <p class="product-description">{{item.info}}</p>
+    <button class="add-to-cart-button">Add to Cart</button>
+</div>
+  

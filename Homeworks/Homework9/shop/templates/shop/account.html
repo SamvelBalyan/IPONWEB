@@ -1,0 +1,93 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+<style>
+.account-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .account-header img {
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+    margin-right: 20px;
+  }
+  
+  h2 {
+    margin-top: 40px;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  th, td {
+    padding: 10px;
+    border: 1px solid #ddd;
+  }
+  
+  th {
+    background-color: #ddd;
+    text-align: left;
+  }
+  
+  .cart-table, .order-table {
+    margin-bottom: 40px;
+  }
+  
+  .cart-table tfoot td {
+    font-weight: bold;
+  }
+</style>
+
+
+<div class="account-header">
+    <img src="{{ customer.avatar.url }}" alt="{{ customer.user.name }}'s avatar">
+    <h1>{{ customer.user.name }}</h1>
+  </div>
+
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <a href="{% url 'change_avatar' %}">Change Avatar</a>
+  </form>
+  
+  <h2>My Cart</h2>
+  <table class="cart-table">
+    <thead>
+      <tr>
+        <th>Item</th>
+        <th>Quantity</th>
+        <th>Price</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for item in cart_items %}
+        <tr>
+          <td>{{ item.name }}</td>
+          <td>{{ item.quantity}}</td>
+          <td>{{ item.price }}$</td>
+          <td>
+            <form  action="{% url 'delete' item.id %}">
+              <!-- {% csrf_token %} -->
+              {% url 'delete' item.id %}
+              <button type="submit">Delete</button>
+            </form>
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+    <tfoot>
+      <tr>
+        <th colspan="2">Total</th>
+        <!-- <td>{{ total_cost }}</td> -->
+        <td>{{total_cost}}$</td>
+      </tr>
+    </tfoot>
+  </table>
+
+   {% endblock %}
